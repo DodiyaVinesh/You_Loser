@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener("load", checkWidth);
+      window.addEventListener("resize", checkWidth);
+      // because I don't care about responsive site
+      function checkWidth() {
+        if (window.innerWidth < 1200) {
+          window.location.href =
+            "https://translate.google.co.in/?sl=en&text=I%20said%20open%20website%20in%20minimum%201200px%20width%2C%20why%20are%20you%20not%20understanding%20you%20noob.&op=translate";
+        }
+      }
+
+      var question = [
+        "What is the smallest three digit number?",
+        "What is 1000*1 equal to?",
+        "I am an odd number. Take away one letter and I become even. What number am I?",
+        "How about 6 / 6 ?",
+      ];
+      var answers = [100, 1000, "Seven", 1];
+      var q = [1, 2, 3, 4];
+
+      function answer(n) {
+        if (q.length === 3) return;
+        //you need to press retry button for next question
+        q = q.filter((i) => i != n);
+        var random = q[Math.floor(Math.random() * 3)];
+        document.querySelector(".question").innerHTML =
+          "Question: " + question[random - 1];
+        document.querySelector(".a" + n).classList.add("wrong");
+        document.querySelector(".a" + random).classList.add("currect");
+        document.querySelector(".footer div").innerHTML =
+          "Dude, You are wrong!";
+      }
+    </script>
+    <style>
+      * {
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 100%;
+        height: calc(100vh - 100px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .question {
+        width: 1200px;
+        font-size: 28px;
+        margin: 20px;
+        border: 1px solid black;
+        border-radius: 20px;
+      }
+      .answers {
+        width: 1000px;
+      }
+      .answer {
+        font-size: 18px;
+        margin: 20px;
+        cursor: pointer;
+        border-radius: 20px;
+        box-shadow: 0 0 5px blue;
+      }
+      .currect {
+        box-shadow: 0 0 25px 2px forestgreen, inset 0 0 5px 2px forestgreen;
+      }
+      .wrong {
+        box-shadow: 0 0 25px 2px rgb(219, 34, 28),
+          inset 0 0 5px 2px rgb(219, 34, 28);
+      }
+      ul li {
+        padding: 5px;
+      }
+      .footer {
+        font-size: 24px;
+      }
+      .footer div {
+        display: inline-block;
+      }
+      button {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 10px;
+        font-weight: bold;
+        box-shadow: 0 0 15px rgb(245, 70, 79);
+        cursor: pointer;
+      }
+    </style>
+    <div class="container">
+      <div class="question">Question:</div>
+      <div class="answers">
+        <div class="answer a1" onclick="answer(1)">A. 100</div>
+        <div class="answer a2" onclick="answer(2)">B. 1000</div>
+        <div class="answer a3" onclick="answer(3)">C. Seven</div>
+        <div class="answer a4" onclick="answer(4)">D. 1</div>
+      </div>
+      <div class="footer">
+        <div>
+          First you need to select the answer then I will give a question
+        </div>
+        <button onclick="location.reload()">Retry</button>
+      </div>
+      <ul>
+        <li>Don't resize windwo to less then 1200px</li>
+        <li>Don't Inspect the code</li>
+        <li>Do above 2 points</li>
+      </ul>
+    </div>
+  </body>
+</html>
